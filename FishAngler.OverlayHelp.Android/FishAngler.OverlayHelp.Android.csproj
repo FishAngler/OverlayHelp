@@ -65,11 +65,6 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\layout\Tooltip.axml" />
     <AndroidResource Include="Resources\drawable\rounded_corners.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\FullViewClose.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\FullViewClose.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\FullViewClose.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\FullViewClose.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\FullViewClose.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\layout\" />
