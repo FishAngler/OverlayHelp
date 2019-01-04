@@ -7,6 +7,7 @@ using Android.Graphics;
 using static Android.Views.View;
 using System.Collections.Generic;
 using System.Linq;
+using Android.Views.Animations;
 
 namespace FishAngler.OverlayHelp.Android
 {
@@ -19,6 +20,8 @@ namespace FishAngler.OverlayHelp.Android
         bool _visible;
         const int SLICE_WIDTH_DP = 12;
         Overlay _overlay = new Overlay();
+
+        const long FADE_DURATION = 1000;
 
         public Help(Activity context)
         {
@@ -65,20 +68,32 @@ namespace FishAngler.OverlayHelp.Android
         }
 
 		public void Hide()
-		{
-			foreach (View view in _addedViews)
+		{        
+            foreach (View view in _addedViews)
 			{
-                if (view.Parent != null)
+                var alphaAnimation = new AlphaAnimation(1f, 0f);
+                alphaAnimation.Duration = FADE_DURATION;
+                alphaAnimation.FillAfter = true;
+                alphaAnimation.AnimationEnd += (object sender, Animation.AnimationEndEventArgs e) =>
                 {
-                    ((ViewGroup)view.Parent).RemoveView(view);
-                }
+                    if (view.Parent != null)
+                    {
+                        ((ViewGroup)view.Parent).RemoveView(view);
+                    }
+                };
+                view.StartAnimation(alphaAnimation);
 			}
 
 			_addedViews.Clear();
 			_visible = false;
-		}
+        }
 
-		public Help SetOverlay(Overlay overlay)
+        void AlphaAnimation_AnimationEnd(object sender, Animation.AnimationEndEventArgs e)
+        {
+        }
+
+
+        public Help SetOverlay(Overlay overlay)
         {
             _overlay = overlay;
             return this;
@@ -86,11 +101,8 @@ namespace FishAngler.OverlayHelp.Android
 
         protected void SetupView()
         {
-			// This can only be setup after all the views is ready and obtain it's position/measurement
-			// so when this is the 1st time TourGuide is being added,
-			// else block will be executed, and ViewTreeObserver will make TourGuide setup process to be delayed until everything is ready
-			// when this is run the 2nd or more times, if block will be executed
-
+            // StartView can't execute until all views's position/measure can be establish. 
+            // If there is any pending view, I delay StartView execution
             var pendingViews = _targetViews.Count(view => !ViewCompat.IsAttachedToWindow(view));
 
 			if (_targetViews.Count == 0 || pendingViews == 0)
@@ -145,11 +157,12 @@ namespace FishAngler.OverlayHelp.Android
 			var overlayWithHoleView = new OverlayWithHoleView(_context, _helpItems, _overlay);
             _addedViews.Add(overlayWithHoleView);
 
-            /* handle click disable */
+            // handle click disable
             HandleDisableClicking(overlayWithHoleView);
 
             SetupOverlayLayout(overlayWithHoleView);
-            /* setup tooltip view */
+
+            // setup tooltip view 
             SetupTooltips(overlayWithHoleView);
         }
 
@@ -157,7 +170,7 @@ namespace FishAngler.OverlayHelp.Android
         {
 			overlayWithHoleView.SetOnClickListener(this);
 			
-            if (_overlay != null && _overlay.OnClickListener != null)
+            if (_overlay != null && _overlay.OnClickAction != null)
             {
                 overlayWithHoleView.Clickable = true;
             }
@@ -173,6 +186,12 @@ namespace FishAngler.OverlayHelp.Android
             // but we're adding it to the content area only, so we need to offset it to the same Y value of contentArea
 
             layoutParams.SetMargins(0, -pos[1], 0, 0);
+
+            var alphaAnimation = new AlphaAnimation(0f, 1f);
+            alphaAnimation.Duration = FADE_DURATION;
+            alphaAnimation.FillAfter = true;
+            overlayWithHoleView.StartAnimation(alphaAnimation);
+
             contentArea.AddView(overlayWithHoleView, layoutParams);
         }
 
@@ -223,7 +242,7 @@ namespace FishAngler.OverlayHelp.Android
                 var ySlice = GetYForSlice(helpItem.Tooltip.Gravity, tooltipRect.Top, tooltipRect.Height(), sliceWidth);
                 layoutParamsSlice.SetMargins(xSlice, ySlice, 0, 0);
 
-				/* add shadow if it's turned on */
+				// add shadow if it's turned on
                 slice.StartAnimation(helpItem.Tooltip.EnterAnimation);
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
                 {
@@ -407,7 +426,7 @@ namespace FishAngler.OverlayHelp.Android
 
         public void OnClick(View v) 
         {
-            _overlay.OnClickListener?.Invoke();
+            _overlay.OnClickAction?.Invoke();
         }
     }
 }

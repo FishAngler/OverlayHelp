@@ -111,16 +111,16 @@ namespace FishAngler.OverlayHelp.iOS.Example
 				Width = 190
 			};
 
-            label1.Hidden = true;
+   //         label1.Hidden = true;
 
-            // TODO: overlay click not working
-			//var overlayHelp5 = new Help(View);
-   //         var overlay5 = new Overlay() { DisableClick = false };
-   //         overlay5.SetOnClickListener(() => overlayHelp5.Hide());
+   //         // TODO: overlay click not working
+			////var overlayHelp5 = new Help(View);
+   ////         var overlay5 = new Overlay() { DisableClick = false };
+   ////         overlay5.SetOnClickListener(() => overlayHelp5.Hide());
 
-			//overlayHelp5
-				//.SetOverlay(overlay)
-                //.AddControl(label1, tooltip5);
+			////overlayHelp5
+			//	//.SetOverlay(overlay)
+   //             //.AddControl(label1, tooltip5);
 
 			button1.TouchUpInside += delegate
 			{

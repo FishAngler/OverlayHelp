@@ -18,7 +18,7 @@ namespace FishAngler.OverlayHelp.Android
             TextColor = Color.ParseColor("#FFFFFF");
 
             EnterAnimation = new AlphaAnimation(0f, 1f);
-            EnterAnimation.Duration = 1000;
+            EnterAnimation.Duration = 500;
             EnterAnimation.FillAfter = true;
             Shadow = true;
             Width = -1;

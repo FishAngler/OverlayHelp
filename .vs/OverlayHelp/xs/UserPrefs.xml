@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{5D501D66-814F-46E6-8E31-89D66EE247FB}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FishAngler.OverlayHelp.iOS/Help.cs">
+    <Files>
+      <File FileName="FishAngler.OverlayHelp.iOS/Help.cs" Line="18" Column="9" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.FishAngler.OverlayHelp.Android.Example PreferredExecutionTarget="Android.98867834424d394c54" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.FishAngler.OverlayHelp.iOS.Example automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.e535d678efee479aacd5ea633cbd1820585cf58d" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.FishAngler.OverlayHelp.Android PreferredExecutionTarget="Android.Nexus 5 (Lollipop)" />
+</Properties>

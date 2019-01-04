@@ -15,7 +15,6 @@ namespace FishAngler.OverlayHelp.Android
 		float _density;
 	    Overlay _overlay;
 		IList<HelpItem> _helpItems; // This is the list of views to be highlighted, where the holes should be placed
-        Button _button;
 
 		public OverlayWithHoleView(Context context, IList<HelpItem> helpItems, Overlay overlay) : base(context)
         {
@@ -220,8 +219,9 @@ namespace FishAngler.OverlayHelp.Android
 			{
 				if (IsWithinViewHole(ev) && _overlay != null && _overlay.DisableClickThroughHole)
 				{
-					// block it
-					return true;
+                    // block it but execute the overlay click handler
+                    _overlay.OnClickAction?.Invoke();
+                    return true;
 				}
 				else if (IsWithinViewHole(ev))
 				{

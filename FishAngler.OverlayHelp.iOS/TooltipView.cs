@@ -13,7 +13,7 @@ namespace FishAngler.OverlayHelp.iOS
         Slice _tooltipArrow;
 
         public readonly nfloat PADDING = 15;
-        public readonly nfloat TITLE_DESCRIPTION_SEPARATION = 10;
+        public readonly nfloat TITLE_DESCRIPTION_SEPARATION = 5;
         public readonly nfloat SLICE_HEIGHT = 15;
 
         public TooltipView(Tooltip tooltip)
@@ -31,7 +31,7 @@ namespace FishAngler.OverlayHelp.iOS
                 Text = tooltip.Title,
                 TextColor = UIColor.White,
                 Lines = 0,
-                Font = UIFont.SystemFontOfSize(13)
+                Font = UIFont.BoldSystemFontOfSize(13)
             };
             _tooltipBubble.Add(_titleLabel);
 
@@ -40,7 +40,7 @@ namespace FishAngler.OverlayHelp.iOS
                 Text = tooltip.Description,
                 TextColor = UIColor.White,
                 Lines = 0,
-                Font = UIFont.SystemFontOfSize(12)
+                Font = UIFont.SystemFontOfSize(13)
             };
             _tooltipBubble.Add(_descriptionLabel);
 

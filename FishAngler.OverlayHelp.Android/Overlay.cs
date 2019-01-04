@@ -13,7 +13,7 @@ namespace FishAngler.OverlayHelp.Android
 		public bool DisableClick { get; set; }
 		public Color BackgroundColor { get; set; }
 		public bool DisableClickThroughHole { get; set; }
-		public Action OnClickListener { get; set; }
+		public Action OnClickAction { get; set; }
 
 		public Overlay(bool disableClick, Color backgroundColor)
 		{
@@ -39,9 +39,9 @@ namespace FishAngler.OverlayHelp.Android
 			return this;
 		}
 
-		public Overlay SetOnClickListener(Action onClickListener)
+		public Overlay SetOnClickAction(Action onClickAction)
 		{
-			OnClickListener = onClickListener;
+			OnClickAction = onClickAction;
 			return this;
 		}
 	}
