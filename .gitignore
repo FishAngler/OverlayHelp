@@ -12,4 +12,5 @@ obj
 *.nib
 *.suo
 *.user
-*.pfx
+*.pfix
+.vs/

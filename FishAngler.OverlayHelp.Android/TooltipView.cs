@@ -24,7 +24,7 @@ namespace FishAngler.OverlayHelp.Android
                 var parent = (ViewGroup)((Activity)Context).Window.DecorView;
 				var layoutInflater = ((Activity)Context).LayoutInflater;
 
-				layoutInflater.Inflate(Resource.Layout.Tooltip, this);
+				layoutInflater.Inflate(Resource.Layout.TooltipLayout, this);
 
 				View toolTipContainer = FindViewById(Resource.Id.toolTip_container);
 				TextView toolTipTitleTV = (TextView)FindViewById(Resource.Id.title);

@@ -63,7 +63,7 @@ namespace FishAngler.OverlayHelp.Android.Example
 			var overlayHelp3 = new Help(this);
 
 			var overlay = new Overlay();
-			overlay.SetOnClickListener(() => overlayHelp3.Hide());
+			//overlay.SetOnClickListener(() => overlayHelp3.Hide());
 			var highlight3 = new Highlight()
 			{
 				HoleWidth = (int)(120 * density),
